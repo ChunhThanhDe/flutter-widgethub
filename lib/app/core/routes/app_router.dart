@@ -6,17 +6,23 @@ import 'package:flutterui/app/presentation/categories/widget/component_layout.da
 import 'package:flutterui/app/presentation/home/screens/home_screen.dart';
 import 'package:flutterui/app/presentation/request_component/request_component_screen.dart';
 import 'package:flutterui/app/core/routes/route_names.dart';
+import 'package:flutterui/debug_tool/log_helper.dart';
 import 'package:go_router/go_router.dart';
 
+const tag = "App_ROUTER";
+
 Widget buildComponentLayout(GoRouterState state) {
+  LogHelper.d(tag, "buildComponentLayout: $state");
   return ComponentCategoryScreen(subCategory: state.pathParameters['id']);
 }
 
 Widget buildTemplateLayout(GoRouterState state) {
+  LogHelper.d(tag, "buildTemplateLayout: $state");
   return TemplateCategoryScreen(id: state.pathParameters['id']);
 }
 
 Widget buildComponentDetailsWidget(GoRouterState state) {
+  LogHelper.d(tag, "buildComponentDetailsWidget: $state");
   return ComponentDetailsWrapper(
     id: state.pathParameters['subCategory'] as String,
   );
@@ -26,6 +32,7 @@ GoRoute buildAnimatedRoute({
   required String path,
   required Function(BuildContext context, GoRouterState state) builder,
 }) {
+  LogHelper.d(tag, "buildAnimatedRoute: \n$path \n${builder.toString()}");
   return GoRoute(
     path: path,
     pageBuilder: (context, state) {

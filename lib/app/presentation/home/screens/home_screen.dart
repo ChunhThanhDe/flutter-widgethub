@@ -12,6 +12,7 @@ import 'package:flutterui/app/shared/data/enums/sub_component_category_enum.dart
 import 'package:flutterui/app/shared/logic/theme/theme_bloc.dart';
 import 'package:flutterui/app/shared/presentation/utils/sizing.dart';
 import 'package:flutterui/app/shared/presentation/widgets/layout/app_layout.dart';
+import 'package:flutterui/debug_tool/log_helper.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final componentBloc = getIt.get<ComponentBloc>();
   @override
   void initState() {
+    LogHelper.d("HomeScreen", "initState");
     _controller.addListener(listenToScroll);
     super.initState();
   }

@@ -119,7 +119,7 @@ class AppCard extends StatelessWidget {
                     backgroundColor: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: SvgPicture.asset("assets/icons/favorite.svg"),
+                      child: SvgPicture.asset("assets/icons/github.svg"),
                     ),
                   ),
                 )

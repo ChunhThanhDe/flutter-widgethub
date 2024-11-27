@@ -27,21 +27,26 @@ class _HomeScreenState extends State<ComponentDetailsWrapper> {
       listener: (context, state) {
         if (state is UpdateActiveComponentSuccess) {
           final componentDetails = state.activeComponent;
-          final link = "/components/${componentDetails.category.link()}/${componentDetails.subcategory.link()}/${componentDetails.id}/";
+          final link =
+              "/components/${componentDetails.category.link()}/${componentDetails.subcategory.link()}/${componentDetails.id}/";
           context.go(link);
         }
       },
       builder: (context, state) {
-        final component = state.allComponents.where((item) => item.id == widget.id).firstOrNull;
+        final component = state.allComponents
+            .where((item) => item.id == widget.id)
+            .firstOrNull;
         if (component != null) {
           final activeIndex = state.allComponents.indexOf(component);
           final canPrevious = activeIndex > 0;
           final canNext = activeIndex < state.allComponents.length - 1;
           return MainContent(
             children: [
-              Text(component.title, style: Theme.of(context).textTheme.displayLarge),
+              Text(component.title,
+                  style: Theme.of(context).textTheme.displayLarge),
               AppSizing.kh10Spacer(),
-              Text(component.description, style: Theme.of(context).textTheme.bodyMedium),
+              Text(component.description,
+                  style: Theme.of(context).textTheme.bodyMedium),
               AppSizing.kh20Spacer(),
               Text("Setup", style: Theme.of(context).textTheme.displayMedium),
               AppSizing.kh10Spacer(),
@@ -70,11 +75,14 @@ class _HomeScreenState extends State<ComponentDetailsWrapper> {
                   child: RichText(
                 text: TextSpan(
                   text: "'${widget.id}' ",
-                  style: DefaultTextStyle.of(context).style.copyWith(color: Theme.of(context).primaryColor),
+                  style: DefaultTextStyle.of(context)
+                      .style
+                      .copyWith(color: Theme.of(context).primaryColor),
                   children: <TextSpan>[
                     TextSpan(
                       text: 'not found in collections!',
-                      style: TextStyle(color: Theme.of(context).primaryColorDark),
+                      style:
+                          TextStyle(color: Theme.of(context).primaryColorDark),
                     ),
                   ],
                 ),

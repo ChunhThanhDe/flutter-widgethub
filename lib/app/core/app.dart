@@ -8,16 +8,20 @@ import 'package:flutterui/app/shared/logic/navigation/navigation_bloc.dart';
 import 'package:flutterui/app/shared/logic/sidebar/sidebar_bloc.dart';
 import 'package:flutterui/app/shared/logic/theme/theme_bloc.dart';
 import 'package:flutterui/app/shared/presentation/utils/theme.dart';
+import 'package:flutterui/debug_tool/log_helper.dart';
 import 'package:go_router/go_router.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  static const tag = "MyApp";
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        LogHelper.d(tag, "MultiBlocProvider start");
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => getIt.get<ThemeBloc>()),

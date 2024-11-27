@@ -2,13 +2,17 @@ import 'package:bloc/bloc.dart';
 import 'package:flutterui/components/presentation/export/store.dart';
 import 'package:flutterui/app/presentation/home/model/component_block_model.dart';
 import 'package:flutterui/app/shared/data/models/component.dart';
+import 'package:flutterui/debug_tool/log_helper.dart';
 
 part 'component_event.dart';
 part 'component_state.dart';
 
 class ComponentBloc extends Bloc<ComponentEvent, ComponentState> {
+  static const tag = "ComponentBloc";
+
   ComponentBloc() : super(ComponentInitial(activeComponent: AllComponents.widgets.first, allComponents: [])) {
     on<UpdateActiveCategoryEvent>((event, emit) {
+      LogHelper.d(tag, "UpdateActiveCategoryEvent");
       emit(UpdateActiveCategorySuccess(
         activeComponent: state.activeComponent,
         allComponents: AllComponents.widgets,
@@ -16,6 +20,7 @@ class ComponentBloc extends Bloc<ComponentEvent, ComponentState> {
       ));
     });
     on<GetAllComponentsEvent>((event, emit) {
+      LogHelper.d(tag, "GetAllComponentsEvent");
       emit(FetchComponents(
         activeComponent: state.activeComponent,
         allComponents: AllComponents.widgets,
@@ -23,6 +28,7 @@ class ComponentBloc extends Bloc<ComponentEvent, ComponentState> {
       ));
     });
     on<UpdateActiveComponentEvent>((event, emit) {
+      LogHelper.d(tag, "UpdateActiveComponentEvent");
       emit(UpdateActiveComponentSuccess(
         activeComponent: event.newComponent,
         allComponents: state.allComponents,
@@ -30,6 +36,7 @@ class ComponentBloc extends Bloc<ComponentEvent, ComponentState> {
       ));
     });
     on<FindNextComponentBlocEvent>((event, emit) {
+      LogHelper.d(tag, "FindNextComponentBlocEvent");
       final allComponents = AllComponents.widgets;
       final activeIndex = allComponents.indexWhere((component) => component.id == state.activeComponent.id);
 
